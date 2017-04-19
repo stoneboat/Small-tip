@@ -1,0 +1,1 @@
+The usage of ADS can be easily found on the internet. Read the BAT file to understand it how to use. Besides, the software named alternatestreamview can detect ads stream, remove it and modify it.
