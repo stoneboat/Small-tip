@@ -1,0 +1,24 @@
+##installation
+sudo apt-get install mysql-server
+sudo apt-get install libmysqlclient-dev
+
+##compile
+g++ -o udf.so udf.cpp -I /usr/include/mysql/ -L /usr/lib/mysql/ -shared -fPIC
+
+##put compile .so file in specific mysql folder 
+cp udf.so /usr/lib/mysql/plugin/
+
+##open mysql db
+mysql -uroot -pbool
+
+##connect api from c-interface to mysql-interface
+### one row format
+create function str_reverse returns string soname 'udf.so';
+### aggregate formate
+create aggregate  function mysum returns integer soname 'udf.so';
+
+##calling the udf function
+### calling singleRow func
+select str_reverse('fdd45');
+### calling aggregate func
+select mysum(salary) from salary;
